@@ -1,6 +1,11 @@
 from abc import ABC, abstractmethod
 
+
 class ConnectionBase(ABC):
-    pass
+    @abstractmethod
+    def __init__(self):
+        pass
 
-
+    @abstractmethod
+    def get_connection(self):
+        pass
