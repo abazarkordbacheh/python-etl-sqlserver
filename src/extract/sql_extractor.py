@@ -1,6 +1,6 @@
 from src.connections.sql_connection import SQLServerConnection
 from src.config.setting import *
-
+from src.utils import * 
 
 # ------------------------------------ Configure SQLServer Connections ------------------------------------
 source_server = SQLServerConnection(host=SOURCE_FISHES_HOST,
@@ -16,3 +16,5 @@ target_server = SQLServerConnection(host=TARGET_FISHES_HOST,
                                    password=TARGET_FISHES_PASSWORD,
                                    database=TARGET_FISHES_DATABASE,
                                    windows_auth=True)
+
+def extract_query(query):
