@@ -1,3 +1,6 @@
 .venv/
 .idea/
 .gitignore
+test/pytest.ini
+test/test_utils.py
+test/ pyproject.toml

@@ -1,6 +1,6 @@
 # -------------------------------- Fishes --------------------------------
 # source =>
-SOURCE_FISHES_HOST = "."
+SOURCE_FISHES_HOST = "localhost"
 SOURCE_FISHES_USERNAME = ""
 SOURCE_FISHES_PASSWORD = ""
 SOURCE_FISHES_DATABASE = "CBI_Arzi"

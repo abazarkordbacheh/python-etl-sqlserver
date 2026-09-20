@@ -1,0 +1,52 @@
+========================== Initial Configuration ==========================
+git config --global user.name "Your Name"
+git config --global user.email "you@example.com"
+git config --global init.defaultBranch main
+
+git init
+url <clone git>
+git log  all-- graph-- oneline--
+
+============================= Commit Message =============================
+<type>(<scope>): <short description in imperative>
+[optional body]
+[optional footer(s)]
+
+tyeps ==> feat, fix, refactor, docs, test, chore, style, perf, ci, revert
+
+git add forgotten_file.py
+git commit --amend --no-edit
+git commit --amend -m "new message"
+
+================================= Git Tag =================================
+Lightweight => git tag v1.0.0
+Annotated ==> git tag -a v1.0.0 -m "Release: first stable version"
+
+============================ Share and get tags ===========================
+git push origin v1.0.0
+git push origin --tags
+git fetch --tags
+git push origin :refs/tags/v1.0.0
+
+git checkout v1.0.0
+git checkout -b hotfix-branch v1.0.0
+
+=========================== Key Branch Commands ===========================
+git switch <branch-name>
+git switch -c <new-branch>
+git branch
+git branch -a
+git branch -d <branch-name>
+git branch -D <branch-name>
+
+========================== Undo and Redo Changes ==========================
+git restore <file>
+git restore --staged <file> # Staging Area (Unstage)
+git restore --staged --worktree <file> #  Staging
+
+git revert 4f2a91b
+git revert HEAD
+
+git reset --soft HEAD~1 # Staged
+git reset --mixed HEAD~1 # Unstaged
+git reset --hard HEAD~1

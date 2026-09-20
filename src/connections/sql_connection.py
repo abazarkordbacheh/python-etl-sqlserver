@@ -29,22 +29,21 @@ class SQLServerConnection(ConnectionBase):
         :return:
         sqlalchemy.engine.base.Engine
         """
+
         if self.windows_auth:
-            conn_str = (
-                f"mssql+pymssql://{self.host}:{self.port}/{self.database}"
-                f"?trusted_connection=yes"
-            )
+            conn_str = f"mssql+pymssql://{self.host}:{self.port}/{self.database}"
+            return sqlalchemy.create_engine(conn_str)
         else:
             conn_str = (
                 f"mssql+pymssql://{self.user}:{self.password}"
                 f"@{self.host}:{self.port}/{self.database}"
             )
+            return sqlalchemy.create_engine(conn_str)
 
-        return sqlalchemy.create_engine(conn_str)
 
     @classmethod
     def sample(cls) -> SQLServerConnection:
-        return SQLServerConnection(host=".",
+        return SQLServerConnection(host="localhost",
                                    port=1433,
                                    user="",
                                    password="",
