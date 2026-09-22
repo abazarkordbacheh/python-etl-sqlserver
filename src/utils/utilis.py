@@ -1,5 +1,4 @@
 # region modules...
-import re
 
 from sqlalchemy import text
 from pathlib import Path
@@ -14,6 +13,7 @@ CREATE_TABLE = BASE_DIR / "sql" / "ddl" / "create_table.sql"
 EXTRACT_FULL = BASE_DIR / "sql" / "queries" / "extract_full.sql"
 EXTRACT_MAX_ID = BASE_DIR / "sql" / "queries" / "extract_max_id.sql"
 EXTRACT_COUNT = BASE_DIR / "sql" / "queries" / "extract_count.sql"
+EXTRACT_WHERE = BASE_DIR / "sql" / "queries" / "extract_where.sql"
 
 
 # endregion
@@ -57,6 +57,7 @@ def extract_full(schema: str, table: str) -> str:
     :param schema:
     :return: select SQL query
     """
+    global EXTRACT_FULL
     with open(EXTRACT_FULL, 'r') as f:
         query = f.read()
         query = query.replace("schema", schema)
@@ -92,6 +93,24 @@ def extract_count(schema: str, table: str) -> str:
         query = f.read()
         query = query.replace("schema", schema)
         query = query.replace("table", table)
+        return text(query)
+
+
+def extract_where(schema: str, table: str, column, max_id) -> str:
+    """
+    EXTRACT_WHERE SQL query.
+    :param schema:
+    :param table:
+    :param column:
+    :param max_id:
+    :return: select SQL query
+    """
+    with open(EXTRACT_WHERE, 'r') as f:
+        query = f.read()
+        query = query.replace("schema", schema)
+        query = query.replace("table", table)
+        query = query.replace("column", column)
+        query = query.replace("max_id", max_id)
         return text(query)
 
 # endregion
