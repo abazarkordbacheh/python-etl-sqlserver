@@ -32,14 +32,13 @@ class SQLServerConnection(ConnectionBase):
 
         if self.windows_auth:
             conn_str = f"mssql+pymssql://{self.host}:{self.port}/{self.database}"
-            return sqlalchemy.create_engine(conn_str)
+            self.engine = sqlalchemy.create_engine(conn_str)
         else:
             conn_str = (
                 f"mssql+pymssql://{self.user}:{self.password}"
                 f"@{self.host}:{self.port}/{self.database}"
             )
-            return sqlalchemy.create_engine(conn_str)
-
+            self.engine = sqlalchemy.create_engine(conn_str)
 
     @classmethod
     def sample(cls) -> SQLServerConnection:

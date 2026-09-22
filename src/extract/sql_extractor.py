@@ -1,20 +1,19 @@
+from typing import Any
 from src.connections.sql_connection import SQLServerConnection
-from src.config.setting import *
-from src.utils import * 
+from src.utils.utilis import extract_full
+import pandas as pd
+
 
 # ------------------------------------ Configure SQLServer Connections ------------------------------------
-source_server = SQLServerConnection(host=SOURCE_FISHES_HOST,
-                                   port=1433,
-                                   user=SOURCE_FISHES_USERNAME,
-                                   password=SOURCE_FISHES_PASSWORD,
-                                   database=SOURCE_FISHES_DATABASE,
-                                   windows_auth=True)
-
-target_server = SQLServerConnection(host=TARGET_FISHES_HOST,
-                                   port=1433,
-                                   user=TARGET_FISHES_USERNAME,
-                                   password=TARGET_FISHES_PASSWORD,
-                                   database=TARGET_FISHES_DATABASE,
-                                   windows_auth=True)
-
-def extract_query(query):
+def extract(connection: SQLServerConnection, schema: str, table: str) -> Any:
+    """
+    Extract data from SQL table
+    :param connection:
+    :param schema:
+    :param table:
+    :return: Generator
+    """
+    query = extract_full(schema, table)
+    with connection.engine.connect() as conn:
+        for chunk in pd.read_sql_query(query, con=conn, chunksize=10):
+            yield chunk

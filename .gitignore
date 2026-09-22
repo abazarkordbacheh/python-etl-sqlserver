@@ -4,3 +4,4 @@
 test/pytest.ini
 test/test_utils.py
 test/ pyproject.toml
+src/extract/test.py
